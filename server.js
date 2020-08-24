@@ -3,22 +3,22 @@ const express = require('express');
 const app = express();
 const kas = require('kas-api/dist/kas-mail-forward')
 
+function client(){
+    return new kas.KasMailForward(process.env.KAS_USERNAME, process.env.KAS_PASSWORD)
+}
+
 app.get('/', (req, res) => {
-    result = new kas.KasMailForward(process.env.KAS_USERNAME, process.env.KAS_PASSWORD).list()
-    result.then(function(results){
+    client().list().then(function(results){
+        json = []
         results.forEach(element => {
-            res.write('INCOME: ' + element.mail_forward_adress + ' ')
-            res.write('\n')
-            res.write('TARGET: ' + element.mail_forward_targets + ' ')
-            res.write('\n')
-            res.write('COMMENT: ' + element.mail_forward_comment + ' ')
-            res.write('\n')
-            // res.write(element.mail_forward_spamfilter + ' ')
-            res.write(element.in_progress)
-            res.write('\n')
-            res.write('\n')
+            json.push({
+                source: element.mail_forward_adress,
+                target: element.mail_forward_targets,
+                comment: element.mail_forward_comment,
+                pending: element.in_progress,
+            })
         });
-        res.end()
+        res.json(json)
     });
 });
 
