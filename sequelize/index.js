@@ -1,5 +1,7 @@
+const path = require('path')
 const { Sequelize } = require('sequelize')
-const { applyExtraSetup } = require(__dirname + '/extra-setup')
+
+const { applyExtraSetup } = require(path.join(__dirname, 'extra-setup'))
 
 const sequelize = new Sequelize(
   process.env.DB_SCHEMA,

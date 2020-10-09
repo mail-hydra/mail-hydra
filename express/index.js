@@ -1,9 +1,10 @@
+const path = require('path')
 const express = require('express')
 const helmet = require('helmet')
 const bodyParser = require('body-parser')
 
 const routes = {
-  forwards: require(__dirname + '/routes/forwards')
+  forwards: require(path.join(__dirname, 'routes', 'forwards'))
 }
 
 const app = express()

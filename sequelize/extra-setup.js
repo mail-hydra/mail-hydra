@@ -1,5 +1,5 @@
 function applyExtraSetup (sequelize) {
-  const { forward } = sequelize.models
+  // const { forward } = sequelize.models
 }
 
 module.exports = { applyExtraSetup }
