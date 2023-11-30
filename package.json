@@ -28,6 +28,6 @@
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
-    "standard": "^14.3.4"
+    "standard": "^16.0.0"
   }
 }
